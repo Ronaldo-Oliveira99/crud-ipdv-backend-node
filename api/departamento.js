@@ -104,6 +104,7 @@ module.exports = (app) => {
         .db("departamento")
         .join("centrocusto",  "centrocusto.id", "departamento.centroId")
         .select( "departamento.id as id","departamento.name as departamento", "centrocusto.name as centro_custo")
+        
         .then((depts) => res.json(depts));
     } catch (error) {
       next(error);

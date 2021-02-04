@@ -24,9 +24,9 @@ module.exports = app => {
     .post(app.api.departamento.save)
     
     app.route('/dpt/:id')
-    .all(app.config.passport.authenticate())
-    //  .get(app.api.departamento.byDeptUserId)
-    //.get(app.api.departamento.getByUserDept)
+    // .all(app.config.passport.authenticate())
+    .get(app.api.departamento.getByCentroDept)
+    // .get(app.api.departamento.getByUserDept)
     // .get(app.api.departamento.byId)
     .post(app.api.departamento.save)
 

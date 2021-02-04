@@ -68,13 +68,15 @@ module.exports = (app) => {
     };
     const getByUserDept= (req, res) => {
       app
-        .db("cargo","usuarios")
-        .join("departamento",  "departamento.id",  "cargo.departamentoId")
+        .db("cargo")
+        .join('departamento', "departamento.id", "cargo.departamentoId"  )
         .where({ departamentoId:  req.params.id })
-        .select( "cargo.id ", "departamento.name as departamento")
-        .whereRaw("?? = ??", ["usuarios.cargoId", "cargo.id"])
+        //.select("cargo.name as cargo", "departamento.name" )
+        .select("cargo.id as id", "cargo.name as cargo","departamento.name as departamento" )
+        // .join("cargo", "cargo.id" , "usuarios.cargoId" )
+        //.select("usuarios.name as name", "cargo.name as cargo","departamento.name as departamento" )
+        //  .whereRaw("?? = ??", ["usuarios.cargoId", "cargo.id"])
 
-        //join("usuarios", "usuarios.cargoId" , "cargo.id" )
         .then((cargo) => res.json(cargo))
         .catch((err) => res.status(500).send(err));
 
